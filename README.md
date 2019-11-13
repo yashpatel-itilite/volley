@@ -11,7 +11,7 @@ no nested level inside the dictionary. Still upto one level nested structure it
 is good. Incase of very complecated nesting structure it'll become very difficult
 to write validations.
 
->> Let's take a look at it
+> Let's take a look at it
 ```
 from volley import Form
 from volley.fields import Field
