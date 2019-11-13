@@ -1,6 +1,4 @@
-""" Form
-
-"""
+""" Form """
 
 from .fields import Field
 from .exceptions import ValidationError
