@@ -6,10 +6,10 @@ from volley.validators import Required
 
 
 class UserValidationForm(Form):
-	first_name = Field('user.first_name')
-	last_name = Field('User.last_name')
-	email = Field('User.email')
-	phone = Field('User.address.phone')
+	first_name = Field('user.first_name', validators=[Required()])
+	last_name = Field('user.last_name', validators=[Required()])
+	email = Field('user.email', validators=[Required()])
+	phone = Field('user.address.phone', validators=[Required()])
 
 
 class TestVolley(unittest.TestCase):
@@ -37,8 +37,7 @@ class TestVolley(unittest.TestCase):
 		is_validation_passed = form.validate()
 
 		self.assertTrue(is_validation_passed)
-
-		self.assertEqual(expected, mock)
+		self.assertEqual(expected, form.data)
 
 	def test_form_validation_fails(self):
 		pass
