@@ -14,7 +14,9 @@ class Form(object):
 
 	def validate(self):
 		for attr_name in dir(self):
-			human_readable_attr_name = ' '.join(attr_name.title().split('_'))
+			human_readable_attr_name = ' '.join(attr_name.split('_'))
+			human_readable_attr_name = human_readable_attr_name[0].upper() + ''.join(human_readable_attr_name[1:])
+
 			attr = getattr(self, attr_name)
 
 			if not isinstance(attr, Field):

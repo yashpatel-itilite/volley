@@ -18,7 +18,6 @@ class Validator(object):
 
 class Required(Validator):
 	def validate(self, attr_name, value, data):
-		print(attr_name, value)
 
 		if not value:
 			raise ValidationError()

@@ -12,32 +12,54 @@ class UserValidationForm(Form):
 	phone = Field('user.address.phone', validators=[Required()])
 
 
+mock_false_data = {
+	'user': {
+		'last_name': 'Doe',
+		'email': 'mailme@jhondoe.com',
+	}
+}
+
+mock_false_data_errors = {
+	'first_name': ['First name is required'],
+	'phone': ['Phone is required'],
+}
+
+mock = {
+	'user': {
+		'first_name': 'Jhon',
+		'last_name': 'Doe',
+		'email': 'mailme@jhondoe.com',
+		'address': {
+			'phone': '+9100000000',
+		}
+	}
+}
+
+expected = {
+	'first_name': 'Jhon',
+	'last_name': 'Doe',
+	'email': 'mailme@jhondoe.com',
+	'phone': '+9100000000'
+}
+
+
+
 class TestVolley(unittest.TestCase):
 	def test_form_validation_succeeds(self):
-		mock = {
-			'user': {
-				'first_name': 'Jhon',
-				'last_name': 'Doe',
-				'email': 'mailme@jhondoe.com',
-				'address': {
-					'phone': '+9100000000',
-				}
-			}
-		}
-
-		expected = {
-			'first_name': 'Jhon',
-			'last_name': 'Doe',
-			'email': 'mailme@jhondoe.com',
-			'phone': '+9100000000'
-		}
-
 		form = UserValidationForm(mock)
-
 		is_validation_passed = form.validate()
-
 		self.assertTrue(is_validation_passed)
+
+	def test_form_validation_provides_new_positioning(self):
+		form = UserValidationForm(mock)
+		form.validate()
 		self.assertEqual(expected, form.data)
 
 	def test_form_validation_fails(self):
-		pass
+		form = UserValidationForm(mock_false_data)
+		self.assertFalse(form.validate())
+
+	def test_errors_form_validation_fails(self):
+		form = UserValidationForm(mock_false_data)
+		form.validate()
+		self.assertEqual(form.errors, mock_false_data_errors)
