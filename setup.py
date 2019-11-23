@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
 	name='volley',
-	version='0.1',
+	version='0.1.1',
 	description='Python Data Validation Library',
 	url='https://www.github.com/yashpatel-itilite/volley',
 	license='MIT',

@@ -64,3 +64,7 @@ class FloatField(Field):
 
 	def error_message(self, human_readable_attribute_name):
 		return '{} must be string'.format(human_readable_attribute_name)
+
+
+class ListField(Field):
+	DEFAULT = []
