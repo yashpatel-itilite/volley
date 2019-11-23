@@ -1,6 +1,7 @@
 *.pyc
 
 __pycache__
+dist
 venv
 .eggs
 *.egg-info
